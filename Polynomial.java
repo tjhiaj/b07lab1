@@ -10,9 +10,18 @@ public class Polynomial {
 	}
 
 	public Polynomial add(Polynomial p){
-		Polynomial p1 = p;
-		for (int i = 0;  i < this.coefficients.length; i++){
-			p1.coefficients[i] += this.coefficients[i];
+		Polynomial p1;
+		Polynomial p2;
+		if (p.coefficients.length > this.coefficients.length){
+			p1 = p;
+			p2 = this;
+		}
+		else{
+			p1 = this;
+			p2 = p;
+		}
+		for (int i = 0;  i < p2.coefficients.length; i++){
+			p1.coefficients[i] += p2.coefficients[i];
 		}
 		return p1;
 	}
