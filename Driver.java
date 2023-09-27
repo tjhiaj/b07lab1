@@ -30,9 +30,9 @@ public class Driver {
 
 		File f = new File("C:\\Users\\jtjhi\\b07lab1\\testpoly.txt");
 		Polynomial p5 = new Polynomial(f);
-		// for (int i = 0; i < p5.coefficients.length; i++){
-		// 	System.out.println("co: " + p5.coefficients[i] + " ex: " + p5.exponents[i]);
-		// }
+		for (int i = 0; i < p5.coefficients.length; i++){
+			System.out.println("co: " + p5.coefficients[i] + " ex: " + p5.exponents[i]);
+		}
 
 		p1.saveToFile("C:\\Users\\jtjhi\\b07lab1\\testpoly.txt");
 	}
