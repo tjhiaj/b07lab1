@@ -34,6 +34,6 @@ public class Driver {
 			System.out.println("co: " + p5.coefficients[i] + " ex: " + p5.exponents[i]);
 		}
 
-		p1.saveToFile("C:\\Users\\jtjhi\\b07lab1\\testpoly.txt");
+		p5.saveToFile("C:\\Users\\jtjhi\\b07lab1\\testpoly.txt");
 	}
 }

@@ -18,7 +18,37 @@ public class Polynomial {
 	public Polynomial(File f) throws FileNotFoundException {
 		int count = 0;
 		Scanner input = new Scanner(f);
-		String[] terms = input.next().split("[-+]");
+		String line = input.next();
+		String[] terms1 = line.split("[-+]");
+		String[] terms = terms1;
+		if (terms1[0].length() == 0){
+			System.out.println("first entry empty");
+			terms = new String[terms1.length-1];
+			for (int i = 1; i < terms1.length; i++){
+				terms[i-1] = terms1[i];
+			}
+		}
+		int term = 0;
+		for (int i = 0; i < line.length(); i++){
+			if (line.charAt(i) == '-'){
+				System.out.println("found -ve");
+				if (i == 0){
+					System.out.println("first -ve");
+					terms[0] = '-' + terms[0];
+				}
+				else{
+					System.out.println("other -ve");
+					term ++;
+					terms[term] = '-' + terms[term];
+				}
+			}
+			else if (line.charAt(i) == '+'){
+				term++;
+			}
+		}
+		for (int i = 0; i < terms.length; i++){
+			System.out.println("terms: " + terms[i]);
+		}
 		coefficients = new double[terms.length];
 		exponents = new int[terms.length];
 		for (int i = 0; i < terms.length; i++){
@@ -32,9 +62,16 @@ public class Polynomial {
 			System.out.println("costring: " + co);
 			coefficients[count] = Double.parseDouble(co);
 			System.out.println("coefficients[count]: " + coefficients[count]);
-			x+=2;
-			for (int j = x; j < terms[i].length(); j++){
-				ex += terms[i].charAt(j);
+			System.out.println("x: " + x);
+			System.out.println("terms[i].length(): " + terms[i].length());
+			if (x+1 < terms[i].length() && terms[i].charAt(x+1) == 'x' && x+2 >= terms[i].length()){
+				ex = "1";
+			}
+			else {
+				x+=2;
+				for (int j = x; j < terms[i].length(); j++){
+					ex += terms[i].charAt(j);
+				}
 			}
 			if (ex != ""){
 				exponents[count] = Integer.parseInt(ex);
@@ -49,9 +86,11 @@ public class Polynomial {
 		String poly = "";
 		for (int i = 0; i < coefficients.length; i++){
 			poly += coefficients[i];
-			if (exponents[i]!=0){
+			if (exponents[i]>0){
 				poly+='x';
-				poly += exponents[i];
+				if (exponents[i]>1){
+					poly += exponents[i];
+				}
 			}
 			if (i+1 < coefficients.length && coefficients[i+1] >= 0){
 				poly+='+';
