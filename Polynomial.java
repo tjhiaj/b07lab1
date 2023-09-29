@@ -165,6 +165,21 @@ public class Polynomial {
 		for (int k = 0; k < length; k++){
 			answer = answer.add(results[k]);
 		}
-		return answer;
+		int zeros = 0;
+		for (int i = 0; i < answer.coefficients.length; i++){
+			if (answer.coefficients[i] == 0){
+				zeros ++;
+			}
+		}
+		Polynomial toReturn = new Polynomial(new double[answer.coefficients.length-zeros], new int[answer.coefficients.length-zeros]);
+		int idx = 0;
+		for (int i = 0; i < answer.coefficients.length; i++){
+			if (answer.coefficients[i] != 0){
+				toReturn.coefficients[idx] = answer.coefficients[i];
+				toReturn.exponents[idx] = answer.exponents[i];
+				idx++;
+			}
+		}
+		return toReturn;
     }
 }
