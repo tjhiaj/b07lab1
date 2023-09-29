@@ -22,7 +22,7 @@ public class Polynomial {
 		String[] terms1 = line.split("[-+]");
 		String[] terms = terms1;
 		if (terms1[0].length() == 0){
-			System.out.println("first entry empty");
+			// System.out.println("first entry empty");
 			terms = new String[terms1.length-1];
 			for (int i = 1; i < terms1.length; i++){
 				terms[i-1] = terms1[i];
@@ -31,13 +31,13 @@ public class Polynomial {
 		int term = 0;
 		for (int i = 0; i < line.length(); i++){
 			if (line.charAt(i) == '-'){
-				System.out.println("found -ve");
+				// System.out.println("found -ve");
 				if (i == 0){
-					System.out.println("first -ve");
+					// System.out.println("first -ve");
 					terms[0] = '-' + terms[0];
 				}
 				else{
-					System.out.println("other -ve");
+					// System.out.println("other -ve");
 					term ++;
 					terms[term] = '-' + terms[term];
 				}
@@ -46,9 +46,9 @@ public class Polynomial {
 				term++;
 			}
 		}
-		for (int i = 0; i < terms.length; i++){
-			System.out.println("terms: " + terms[i]);
-		}
+		// for (int i = 0; i < terms.length; i++){
+		// 	System.out.println("terms: " + terms[i]);
+		// }
 		coefficients = new double[terms.length];
 		exponents = new int[terms.length];
 		for (int i = 0; i < terms.length; i++){
@@ -59,11 +59,11 @@ public class Polynomial {
 				co += terms[i].charAt(j);
 				x = j;
 			}
-			System.out.println("costring: " + co);
+			// System.out.println("costring: " + co);
 			coefficients[count] = Double.parseDouble(co);
-			System.out.println("coefficients[count]: " + coefficients[count]);
-			System.out.println("x: " + x);
-			System.out.println("terms[i].length(): " + terms[i].length());
+			// System.out.println("coefficients[count]: " + coefficients[count]);
+			// System.out.println("x: " + x);
+			// System.out.println("terms[i].length(): " + terms[i].length());
 			if (x+1 < terms[i].length() && terms[i].charAt(x+1) == 'x' && x+2 >= terms[i].length()){
 				ex = "1";
 			}
