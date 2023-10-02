@@ -127,12 +127,37 @@ public class Polynomial {
 		return count;
 	}
 
+	public void clean() {
+        int newLength = 0;
+        for(int i = 0; i < coefficients.length; i++)
+            if(coefficients[i] != 0)
+            {
+                newLength++;
+            }
+        double[] newCoeffs = new double[newLength];
+        int[] newExpo = new int[newLength];
+        
+        int j = 0;
+        for(int i = 0; i < coefficients.length; i++)
+        {
+            if(coefficients[i] != 0)
+            {
+                newCoeffs[j] = coefficients[i];
+                newExpo[j] = exponents[i];
+                j++;
+            }
+        }
+        this.exponents = newExpo;
+        this.coefficients = newCoeffs;
+    }
+
 	public Polynomial add(Polynomial p){
 		int length = this.coefficients.length + p.coefficients.length;
 		Polynomial result = new Polynomial(new double[length], new int[length]);
 		int count = 0;
 		count = this.updPoly(result, this, count);
 		this.updPoly(result, p, count);
+		result.clean();
 		return result;
 	}
 
